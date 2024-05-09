@@ -1,0 +1,18 @@
+.text-area .content {
+    -fx-background-color: #578fff;
+    -fx-focus-color: transparent;
+    -fx-border-style: none;
+    -fx-background-radius: 0px;
+    -fx-border-radius: 50px;
+    -fx-opacity: 0.75;
+
+}
+
+.text-area {
+    -fx-background-color: #578fff;
+    -fx-padding: 0px;
+    -fx-border-radius: 50px;
+    -fx-opacity: 0.75;
+    -fx-wrap-text: true;
+}
+
