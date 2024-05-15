@@ -6,41 +6,36 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="480.0" style="-fx-background-color: #0c162b;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nedvedd.projectq.CardCreationController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="createCardVBox" stylesheets="@styles/darkStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nedvedd.projectq.CardCreationController">
    <children>
-      <VBox alignment="CENTER" prefHeight="510.0" prefWidth="360.0" style="-fx-background-color: #27498c; -fx-background-radius: 20;">
+      <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="410.0" style="-fx-background-color: #27498c; -fx-background-radius: 20;" stylesheets="@styles/darkStyle.css">
          <children>
-            <Label alignment="CENTER" prefHeight="40.0" prefWidth="181.0" text="Název karty" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Roboto Thin" size="28.0" />
-               </font>
-            </Label>
-            <TextField fx:id="cardName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="189.0" style="-fx-background-color: #578fff;" />
             <Label text="Otázka" textFill="WHITE">
                <font>
                   <Font name="Roboto Thin" size="28.0" />
                </font></Label>
-            <TextArea fx:id="cardAnswer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="108.0" prefWidth="186.0" styleClass="text-area" stylesheets="@styles/darkStyle.css">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor></TextArea>
+            <TextArea fx:id="cardQuestion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="280.0" styleClass="text-area" stylesheets="@styles/darkStyle.css" wrapText="true" />
             <Label text="Odpověď" textFill="WHITE">
                <font>
                   <Font name="Roboto Thin" size="28.0" />
                </font></Label>
-            <TextArea fx:id="cardQuestion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="188.0" stylesheets="@styles/darkStyle.css" />
-            <Button alignment="CENTER" onAction="#saveCard" prefHeight="50.0" prefWidth="134.0" style="-fx-background-color: #0c162b; -fx-background-radius: 10;" text="Uložit kartu" textFill="WHITE">
-               <font>
-                  <Font name="Roboto Light" size="20.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin></Button>
+            <TextArea fx:id="cardAnswer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="280.0" styleClass="text-area" stylesheets="@styles/darkStyle.css" wrapText="true">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextArea>
          </children>
       </VBox>
+      <Button alignment="CENTER" onAction="#saveCard" prefHeight="50.0" prefWidth="134.0" styleClass="saveCardButton" stylesheets="@styles/darkStyle.css" text="Uložit kartu" textFill="WHITE">
+         <font>
+            <Font name="Roboto Light" size="20.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Button>
    </children>
    <padding>
       <Insets bottom="60.0" left="60.0" right="60.0" top="60.0" />

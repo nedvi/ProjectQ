@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 
 public class DataModel {
     private final ObservableList<Card> cards = FXCollections.observableArrayList();
@@ -35,5 +36,21 @@ public class DataModel {
 
     public void saveData(File file) throws IOException {
         //TODO: export dat do JSONu
+    }
+
+    public void addCard(Card card) {
+        cards.add(card);
+        setCurrentCard(card);
+    }
+
+    public void removeCard(Card card) {
+        Iterator<Card> cardIterator = cards.iterator();
+        while (cardIterator.hasNext()) {
+            Card nextCard = cardIterator.next();
+            if (nextCard.equals(card)) {
+                cardIterator.remove();
+                break;
+            }
+        }
     }
 }

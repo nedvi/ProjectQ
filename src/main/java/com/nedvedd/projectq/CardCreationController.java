@@ -31,11 +31,10 @@ public class CardCreationController {
     @FXML
     protected void saveCard() throws IOException {
 
-        Card card = new Card(cardName.getText(), cardQuestion.getText(), cardAnswer.getText());
+        Card card = new Card(cardQuestion.getText(), cardAnswer.getText());
         System.out.println(card);
 
-        dataModel.getCards().add(card);
-        dataModel.setCurrentCard(card);
+        dataModel.addCard(card);
 
         HomeController controller = Main.home.getController();
         controller.updateGridPane();

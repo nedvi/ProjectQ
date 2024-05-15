@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox alignment="CENTER" prefHeight="720.0" prefWidth="1080.0" styleClass="cardViewHBox" stylesheets="@styles/darkStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nedvedd.projectq.CardViewController">
+   <children>
+      <Button fx:id="previousButton" mnemonicParsing="false" onAction="#previousCard" prefHeight="50.0" prefWidth="50.0" styleClass="navigationButton" stylesheets="@styles/darkStyle.css" text="&lt;" textAlignment="CENTER">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="431.0" styleClass="cardViewHBox" stylesheets="@styles/darkStyle.css">
+      <children>
+            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteCurrentCard" prefHeight="50.0" prefWidth="50.0" styleClass="deleteButton" stylesheets="@styles/darkStyle.css" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="360.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="25.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@img/red-trash-can-icon1.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </graphic>
+            </Button>
+          <VBox fx:id="cardVB" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#rotateOnCardClick" prefHeight="510.0" prefWidth="410.0" styleClass="cardViewVBox" stylesheets="@styles/darkStyle.css">
+              <children>
+                  <Label fx:id="headingLabel" text="Otázka" textFill="WHITE">
+                      <font>
+                          <Font name="Roboto Thin" size="28.0" />
+                      </font>
+                  </Label>
+                  <Label fx:id="questionAnswerLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="408.0" prefWidth="274.0" styleClass="miniCardLabel" stylesheets="@styles/darkStyle.css" textAlignment="CENTER" wrapText="true" VBox.vgrow="NEVER">
+                     <font>
+                        <Font name="Roboto Thin" size="20.0" />
+                     </font>
+                  </Label>
+              </children>
+          </VBox>
+            <Button alignment="CENTER" onAction="#back" prefHeight="50.0" prefWidth="134.0" styleClass="backButton" stylesheets="@styles/darkStyle.css" text="Zpět" textAlignment="CENTER" textFill="WHITE">
+                <font>
+                    <Font name="Roboto Light" size="20.0" />
+                </font>
+                <opaqueInsets>
+                    <Insets />
+                </opaqueInsets>
+                <VBox.margin>
+                    <Insets top="10.0" />
+                </VBox.margin>
+            </Button>
+      </children>
+      <padding>
+          <Insets bottom="60.0" left="60.0" right="60.0" top="60.0" />
+      </padding>
+      </VBox>
+      <Button fx:id="nextButton" mnemonicParsing="false" onAction="#nextCard" prefHeight="50.0" prefWidth="50.0" styleClass="navigationButton" stylesheets="@styles/darkStyle.css" text="&gt;">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</HBox>

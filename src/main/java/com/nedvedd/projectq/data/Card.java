@@ -1,30 +1,18 @@
 package com.nedvedd.projectq.data;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Card {
 
-    private SimpleStringProperty name;
-
     private SimpleStringProperty question;
     private SimpleStringProperty answer;
 
-    public Card(String name, String question, String answer) {
-        this.name = new SimpleStringProperty(name);
+    @JsonCreator
+    public Card(@JsonProperty("question")String question, @JsonProperty("answer")String answer) {
         this.question = new SimpleStringProperty(question);
         this.answer = new SimpleStringProperty(answer);
-    }
-
-    public String getName() {
-        return name.get();
-    }
-
-    public SimpleStringProperty nameProperty() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name.set(name);
     }
 
     public String getQuestion() {
@@ -54,7 +42,6 @@ public class Card {
     @Override
     public String toString() {
         return "Card{" +
-                "name=" + name +
                 ", question=" + question +
                 ", answer=" + answer +
                 '}';
