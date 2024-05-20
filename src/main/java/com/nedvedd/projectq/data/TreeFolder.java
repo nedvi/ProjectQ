@@ -3,19 +3,17 @@ package com.nedvedd.projectq.data;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TreeFolder {
 
     /** Konstanta property jmena bunky */
     private final StringProperty folderName;
 
-    private List<Card> cards = new ArrayList<>();
+    private final CardFolder cardFolder;
 
     /** Konstanta property typu bunky */
-    public TreeFolder(String folderName) {
+    public TreeFolder(String folderName, CardFolder cardFolder) {
         this.folderName = new SimpleStringProperty(folderName);
+        this.cardFolder = cardFolder;
     }
 
     public String getFolderName() {
@@ -30,5 +28,7 @@ public class TreeFolder {
         this.folderName.set(folderName);
     }
 
-
+    public CardFolder getCardFolder() {
+        return cardFolder;
+    }
 }

@@ -1,7 +1,5 @@
 package com.nedvedd.projectq.data;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -10,24 +8,36 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public class DataModel {
-    private final ObservableList<Card> cards = FXCollections.observableArrayList();
+    private final ObservableList<CardFolder> folders = FXCollections.observableArrayList();
 
-    private final ObjectProperty<Card> currentCard = new SimpleObjectProperty<>(null);
+    private CardFolder currentFolder;
 
-    public Card getCurrentCard() {
-        return currentCard.get();
+    public ObservableList<CardFolder> getFolders() {
+        return folders;
     }
 
-    public ObjectProperty<Card> currentCardProperty() {
-        return currentCard;
+
+    public void addFolder(CardFolder cardFolder) {
+        folders.add(cardFolder);
     }
 
-    public void setCurrentCard(Card currentCard) {
-        this.currentCard.set(currentCard);
+    public void removeFolder(CardFolder cardFolder) {
+        Iterator<CardFolder> cardFolderIterator = folders.iterator();
+        while (cardFolderIterator.hasNext()) {
+            CardFolder nextFolder = cardFolderIterator.next();
+            if (nextFolder.equals(cardFolder)) {
+                cardFolderIterator.remove();
+                break;
+            }
+        }
     }
 
-    public ObservableList<Card> getCards() {
-        return cards;
+    public CardFolder getCurrentFolder() {
+        return currentFolder;
+    }
+
+    public void setCurrentFolder(CardFolder currentFolder) {
+        this.currentFolder = currentFolder;
     }
 
     public void loadData(File file) throws IOException {
@@ -36,21 +46,5 @@ public class DataModel {
 
     public void saveData(File file) throws IOException {
         //TODO: export dat do JSONu
-    }
-
-    public void addCard(Card card) {
-        cards.add(card);
-        setCurrentCard(card);
-    }
-
-    public void removeCard(Card card) {
-        Iterator<Card> cardIterator = cards.iterator();
-        while (cardIterator.hasNext()) {
-            Card nextCard = cardIterator.next();
-            if (nextCard.equals(card)) {
-                cardIterator.remove();
-                break;
-            }
-        }
     }
 }

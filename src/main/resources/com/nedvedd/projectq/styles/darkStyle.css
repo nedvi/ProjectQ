@@ -22,17 +22,48 @@
     -fx-background-radius: 20px;
 }
 
-.newCardButton, .saveCardButton {
+.newCardButton, .newFolderButton, .saveCardButton, .folderTree .tree-cell:selected {
     -fx-background-color: #27498c;
     -fx-background-radius: 10px;
+    -fx-text-fill: WHITE;
 }
 
-.newCardButton:hover, .backButton:hover, .miniCardVBox:hover, .cardViewVBox:hover, .navigationButton:hover, .saveCardButton:hover {
+.cancelButton {
+    -fx-background-color: #d03636;
+    -fx-background-radius: 10px;
+    -fx-text-fill: WHITE;
+}
+
+.cancelButton:hover {
+    -fx-background-color: #ff0000;
+}
+
+.newCardButton:hover, .newFolderButton:hover, .backButton:hover, .miniCardVBox:hover, .cardViewVBox:hover, .navigationButton:hover, .saveCardButton:hover, .folderTree .tree-cell:hover {
     -fx-background-color: #2e80c0;
 }
 
-.gridPane, .cardViewHBox, .createCardVBox, .folderTree, .folderTree {
+.folderTree .tree-cell:hover {
+    -fx-background-radius: 10px;
+}
+
+.folderTree .tree-cell:hover:empty {
+    -fx-background-color: transparent;
+}
+
+.gridPane, .cardViewHBox, .createCardVBox, .folderTree, .folderTree .tree-cell {
     -fx-background-color: #0c162b;
+    -fx-font-size: 20px;
+    -fx-text-fill: WHITE;
+}
+
+.folderTree .tree-cell:selected {
+    -fx-font-weight: bold ;
+    -fx-background-radius: 10px;
+}
+
+.text-field {
+    -fx-font-size: 15px;
+    -fx-pref-width: 35px;
 }
 
 .miniCardVBox, .backButton, .navigationButton {

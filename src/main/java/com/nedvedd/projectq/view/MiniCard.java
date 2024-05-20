@@ -1,6 +1,6 @@
 package com.nedvedd.projectq.view;
 
-import com.nedvedd.projectq.CardViewController;
+import com.nedvedd.projectq.controller.CardViewController;
 import com.nedvedd.projectq.Main;
 import com.nedvedd.projectq.data.Card;
 import javafx.geometry.Insets;
@@ -33,6 +33,7 @@ public class MiniCard extends BorderPane {
                         "-fx-text-fill: WHITE; -fx-text-alignment: center");
         questionLabel.setAlignment(Pos.CENTER);
         questionLabel.setMaxWidth(Double.MAX_VALUE);
+
         answerLabel.setStyle(
                 "-fx-wrap-text: true;" +
                         "-fx-text-fill: WHITE; -fx-text-alignment: center");
@@ -46,6 +47,7 @@ public class MiniCard extends BorderPane {
         miniCardVBox.setPadding(new Insets(5));
         miniCardVBox.setSpacing(5);
         miniCardVBox.setMinHeight(300);
+        miniCardVBox.setMaxHeight(300);
 
         miniCardVBox.setOnMouseClicked(event -> {
             try {
@@ -56,6 +58,7 @@ public class MiniCard extends BorderPane {
                 throw new RuntimeException(e);
             }
         });
+
 
         return miniCardVBox;
     }

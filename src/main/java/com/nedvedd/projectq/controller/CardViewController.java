@@ -1,5 +1,6 @@
-package com.nedvedd.projectq;
+package com.nedvedd.projectq.controller;
 
+import com.nedvedd.projectq.Main;
 import com.nedvedd.projectq.data.Card;
 import com.nedvedd.projectq.data.DataModel;
 import javafx.animation.RotateTransition;
@@ -52,8 +53,8 @@ public class CardViewController {
         this.card = card;
         questionAnswerLabel.setText(card.getQuestion());
 
-        int indexOfCurrentCard = dataModel.getCards().indexOf(card);
-        if (indexOfCurrentCard == dataModel.getCards().size() - 1) {
+        int indexOfCurrentCard = dataModel.getCurrentFolder().getCards().indexOf(card);
+        if (indexOfCurrentCard == dataModel.getCurrentFolder().getCards().size() - 1) {
             nextButton.setDisable(true);
         } else {
             nextButton.setDisable(false);
@@ -76,14 +77,14 @@ public class CardViewController {
     private void deleteCurrentCard() throws IOException {
         HomeController homeController = Main.home.getController();
         homeController.removeMiniCard(card);
-        dataModel.removeCard(card);
+        dataModel.getCurrentFolder().removeCard(card);
         back();
     }
 
     @FXML
     private void nextCard() {
-        int indexOfCurrentCard = dataModel.getCards().indexOf(card);
-        Card nextCard = dataModel.getCards().get(indexOfCurrentCard + 1);
+        int indexOfCurrentCard = dataModel.getCurrentFolder().getCards().indexOf(card);
+        Card nextCard = dataModel.getCurrentFolder().getCards().get(indexOfCurrentCard + 1);
         setCard(nextCard);
         if (rotated)
             rotateOnCardClick();
@@ -92,8 +93,8 @@ public class CardViewController {
 
     @FXML
     private void previousCard() {
-        int indexOfCurrentCard = dataModel.getCards().indexOf(card);
-        Card previousCard = dataModel.getCards().get(indexOfCurrentCard - 1);
+        int indexOfCurrentCard = dataModel.getCurrentFolder().getCards().indexOf(card);
+        Card previousCard = dataModel.getCurrentFolder().getCards().get(indexOfCurrentCard - 1);
         setCard(previousCard);
         if (rotated)
             rotateOnCardClick();

@@ -1,8 +1,12 @@
 package com.nedvedd.projectq;
 
-import com.nedvedd.projectq.data.Card;
+import com.nedvedd.projectq.controller.CardCreationController;
+import com.nedvedd.projectq.controller.CardViewController;
+import com.nedvedd.projectq.controller.HomeController;
+import com.nedvedd.projectq.data.CardFolder;
 import com.nedvedd.projectq.data.DataModel;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -68,23 +72,41 @@ public class Main extends Application {
 
         createSampleCards();
 
-        JSONUtillities.cretaeDefaultCards();
+//        JSONUtillities.createDefaultCards();
     }
 
-    public void createSampleCards() {
-        HomeController controller = home.getController();
-
-        for (int i = 0; i < 20; i++) {
-            dataModel.addCard(new Card("Otázka " + i, "Odpověď " + i));
-            controller.updateGridPane();
+    public void createSampleCards() throws IOException {
+        HomeController homeController = home.getController();
+        homeController.generateFolderTreeView();
+        //TODO: osetrit defaultni generaci dat v pripade, ze zadna ulozena data nemame
+        //if
+        dataModel.getFolders().clear();
+        ObservableList<CardFolder> cardFolders = JSONUtillities.loadJsonData();
+        for (CardFolder cardFolder : cardFolders) {
+            dataModel.addFolder(cardFolder);
+            homeController.addTreeFolder(cardFolder.getFolderName(), cardFolder);
         }
 
-//        Card sampleCard01 = new Card("Karta 1", "Otazka 1", "Odpoved 1");
-//        dataModel.addCard(sampleCard01);
-//        controller.updateGridPane();
+
+
+
+        dataModel.setCurrentFolder(dataModel.getFolders().get(0));
+        //else
+
+//        for (int i = 0; i < 20; i++) {
+//            dataModel.getCurrentFolder().addCard(new Card("Otázka " + i, "Odpověď " + i));
+//        }
 //
-//        Card sampleCard02 = new Card("Karta 2", "Otazka 2", "Odpoved 2");
-//        dataModel.addCard(sampleCard02);
-//        controller.updateGridPane();
+//        for (int i = 0; i < 5; i++) {
+//            dataModel.getFolders().get(1).addCard(new Card("Otázka " + i, "Odpověď " + i));
+//        }
+
+        homeController.updateMiniCards(dataModel.getCurrentFolder());
+        System.out.println("LOG:\tNumber of folders: " + dataModel.getFolders().size());
+//        JSONUtillities.saveJsonData(dataModel.getFolders());
+    }
+
+    public void loadData() {
+
     }
 }

@@ -1,16 +1,26 @@
 package com.nedvedd.projectq;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.nedvedd.projectq.data.Card;
+import com.nedvedd.projectq.data.CardFolder;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 
 public class JSONUtillities {
-    private static ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper mapper = new ObjectMapper();
 
-    public static void cretaeDefaultCards() {
+    public static void createDefaultCards() {
         String startOfArray = "{[";
         String sampleCard01Str = "{\"question\":\"Otazka 1\", \"answer\":\"Odpoved 1\"}";
         String sampleCard02Str = "{\"question\":\"Otazka 2\", \"answer\":\"Odpoved 2\"}";
@@ -32,5 +42,25 @@ public class JSONUtillities {
         catch (JsonParseException e) { e.printStackTrace();}
         catch (JsonMappingException e) { e.printStackTrace(); }
         catch (IOException e) { e.printStackTrace(); }
+    }
+
+    public static void saveJsonData(Object jsonDataObject) throws IOException {
+        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+        writer.writeValue(new File("src/main/java/com/nedvedd/projectq/userData/data.json"), jsonDataObject);
+        System.out.println("LOG:\tData saved to JSON");
+    }
+
+    public static ObservableList<CardFolder> loadJsonData() {
+        try {
+            String json = Files.readString(Path.of("src/main/java/com/nedvedd/projectq/userData/data.json"));
+
+            List<CardFolder> cardFolders = mapper.readValue(json, new TypeReference<List<CardFolder>>(){});
+            System.out.println("LOG:\tData loaded from JSON");
+            System.out.println(json);
+            return FXCollections.observableArrayList(cardFolders);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

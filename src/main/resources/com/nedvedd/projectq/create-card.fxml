@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="createCardVBox" stylesheets="@styles/darkStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nedvedd.projectq.CardCreationController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="createCardVBox" stylesheets="@styles/darkStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nedvedd.projectq.controller.CardCreationController">
    <children>
       <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="410.0" style="-fx-background-color: #27498c; -fx-background-radius: 20;" stylesheets="@styles/darkStyle.css">
          <children>
@@ -25,17 +25,19 @@
                </cursor></TextArea>
          </children>
       </VBox>
-      <Button alignment="CENTER" onAction="#saveCard" prefHeight="50.0" prefWidth="134.0" styleClass="saveCardButton" stylesheets="@styles/darkStyle.css" text="Uložit kartu" textFill="WHITE">
-         <font>
-            <Font name="Roboto Light" size="20.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </Button>
+      <HBox alignment="CENTER" prefHeight="65.0" prefWidth="960.0" spacing="5.0">
+         <children>
+          <Button onAction="#cancel" mnemonicParsing="false" prefHeight="50.0" prefWidth="134.0" styleClass="cancelButton" stylesheets="@styles/darkStyle.css" text="Zrušit" />
+            <Button alignment="CENTER" onAction="#saveCard" prefHeight="50.0" prefWidth="134.0" styleClass="saveCardButton" stylesheets="@styles/darkStyle.css" text="Uložit kartu" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Light" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+         </children>
+      </HBox>
    </children>
    <padding>
       <Insets bottom="60.0" left="60.0" right="60.0" top="60.0" />

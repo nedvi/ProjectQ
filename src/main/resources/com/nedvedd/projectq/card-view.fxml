@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="CENTER" prefHeight="720.0" prefWidth="1080.0" styleClass="cardViewHBox" stylesheets="@styles/darkStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nedvedd.projectq.CardViewController">
+<HBox alignment="CENTER" prefHeight="720.0" prefWidth="1080.0" styleClass="cardViewHBox" stylesheets="@styles/darkStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nedvedd.projectq.controller.CardViewController">
    <children>
       <Button fx:id="previousButton" mnemonicParsing="false" onAction="#previousCard" prefHeight="50.0" prefWidth="50.0" styleClass="navigationButton" stylesheets="@styles/darkStyle.css" text="&lt;" textAlignment="CENTER">
          <HBox.margin>

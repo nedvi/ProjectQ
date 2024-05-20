@@ -1,19 +1,16 @@
-package com.nedvedd.projectq;
+package com.nedvedd.projectq.controller;
 
+import com.nedvedd.projectq.Main;
 import com.nedvedd.projectq.data.Card;
 import com.nedvedd.projectq.data.DataModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
 public class CardCreationController {
 
     private DataModel dataModel;
-
-    @FXML
-    public TextField cardName;
 
     @FXML
     public TextArea cardQuestion;
@@ -30,15 +27,26 @@ public class CardCreationController {
 
     @FXML
     protected void saveCard() throws IOException {
-
         Card card = new Card(cardQuestion.getText(), cardAnswer.getText());
         System.out.println(card);
 
-        dataModel.addCard(card);
+        dataModel.getCurrentFolder().addCard(card);
 
         HomeController controller = Main.home.getController();
-        controller.updateGridPane();
+        controller.addCurrentCardToGridPane();
 
         Main.switchSceneTo(Main.home);
+        emptyInput();
+    }
+
+    @FXML
+    private void cancel() throws IOException {
+        Main.switchSceneTo(Main.home);
+        emptyInput();
+    }
+
+    private void emptyInput() {
+        cardQuestion.setText("");
+        cardAnswer.setText("");
     }
 }
