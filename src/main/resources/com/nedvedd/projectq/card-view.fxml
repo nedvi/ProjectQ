@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -18,24 +19,46 @@
       </Button>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="431.0" styleClass="cardViewHBox" stylesheets="@styles/darkStyle.css">
       <children>
-            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteCurrentCard" prefHeight="50.0" prefWidth="50.0" styleClass="deleteButton" stylesheets="@styles/darkStyle.css" textAlignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="50.0" prefWidth="410.0" spacing="10.0">
+               <children>
+                  <Button onAction="#editCurrentCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="editDeleteButton" stylesheets="@styles/darkStyle.css">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/pencil-icon_50.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="1.0" />
+                           </effect>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteCurrentCard" prefHeight="50.0" prefWidth="50.0" styleClass="editDeleteButton" stylesheets="@styles/darkStyle.css" textAlignment="CENTER">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                           <image>
+                              <Image url="@img/red-trash-can-icon1.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
                <VBox.margin>
-                  <Insets bottom="10.0" left="360.0" />
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                     <image>
-                        <Image url="@img/red-trash-can-icon1.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-               </graphic>
-            </Button>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </HBox>
           <VBox fx:id="cardVB" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#rotateOnCardClick" prefHeight="510.0" prefWidth="410.0" styleClass="cardViewVBox" stylesheets="@styles/darkStyle.css">
               <children>
                   <Label fx:id="headingLabel" text="Otázka" textFill="WHITE">

@@ -20,6 +20,7 @@ import java.util.List;
 public class JSONUtillities {
     private static final ObjectMapper mapper = new ObjectMapper();
 
+    @Deprecated
     public static void createDefaultCards() {
         String startOfArray = "{[";
         String sampleCard01Str = "{\"question\":\"Otazka 1\", \"answer\":\"Odpoved 1\"}";
@@ -56,7 +57,7 @@ public class JSONUtillities {
 
             List<CardFolder> cardFolders = mapper.readValue(json, new TypeReference<List<CardFolder>>(){});
             System.out.println("LOG:\tData loaded from JSON");
-            System.out.println(json);
+//            System.out.println(json);
             return FXCollections.observableArrayList(cardFolders);
         } catch (IOException e) {
             e.printStackTrace();

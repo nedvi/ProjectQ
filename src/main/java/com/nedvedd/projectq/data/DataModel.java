@@ -1,5 +1,6 @@
 package com.nedvedd.projectq.data;
 
+import com.nedvedd.projectq.view.QuizCard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -9,13 +10,17 @@ import java.util.Iterator;
 
 public class DataModel {
     private final ObservableList<CardFolder> folders = FXCollections.observableArrayList();
-
+    private QuizCard[] currentPairOfQuizCards = new QuizCard[2];
     private CardFolder currentFolder;
+
+
+    public QuizCard[] getCurrentPairOfQuizCards() {
+        return currentPairOfQuizCards;
+    }
 
     public ObservableList<CardFolder> getFolders() {
         return folders;
     }
-
 
     public void addFolder(CardFolder cardFolder) {
         folders.add(cardFolder);

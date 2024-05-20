@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -32,29 +34,53 @@
       </ScrollPane>
    </center>
    <top>
-      <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" hgap="10.0" maxWidth="1.7976931348623157E308" prefHeight="55.0" prefWidth="1099.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="10.0" top="20.0" />
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </BorderPane.margin>
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="166.0" prefWidth="203.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="227.0" prefWidth="227.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchSceneToCardCreation" prefHeight="58.0" prefWidth="154.0" styleClass="newCardButton" stylesheets="@styles/darkStyle.css" text="Nová karta" textFill="WHITE" GridPane.columnIndex="1">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="74.0" prefWidth="165.0" text="ProjectQ" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Light" size="38.0" />
+               </font>
+            </Label>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchSceneToCardCreation" prefHeight="55.0" prefWidth="162.0" styleClass="newCardButton" stylesheets="@styles/darkStyle.css" text="Nová karta" textFill="WHITE" GridPane.columnIndex="2">
                <font>
                   <Font name="Roboto Light" size="22.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#saveData" prefHeight="44.0" prefWidth="101.0" styleClass="saveCardButton" stylesheets="@styles/darkStyle.css" text="Uložit data" GridPane.columnIndex="2">
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#saveData" prefHeight="50.0" prefWidth="150.0" styleClass="saveCardButton" stylesheets="@styles/darkStyle.css" text="Uložit data" textAlignment="CENTER" GridPane.columnIndex="4">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="23.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/save-icon_50.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="1.0" />
+                     </effect>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Light" size="20.0" />
+               </font>
             </Button>
+            <Button mnemonicParsing="false" onAction="#startQuiz" prefHeight="55.0" prefWidth="150.0" styleClass="startQuizButton" stylesheets="@styles/darkStyle.css" text="Zahájit kvíz" GridPane.columnIndex="3">
+               <font>
+                  <Font name="Roboto Light" size="22.0" />
+               </font></Button>
          </children>
       </GridPane>
    </top>

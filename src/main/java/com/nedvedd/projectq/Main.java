@@ -3,15 +3,23 @@ package com.nedvedd.projectq;
 import com.nedvedd.projectq.controller.CardCreationController;
 import com.nedvedd.projectq.controller.CardViewController;
 import com.nedvedd.projectq.controller.HomeController;
+import com.nedvedd.projectq.controller.QuizController;
 import com.nedvedd.projectq.data.CardFolder;
 import com.nedvedd.projectq.data.DataModel;
+import com.nedvedd.projectq.view.Config;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class Main extends Application {
 
@@ -19,6 +27,7 @@ public class Main extends Application {
     public static FXMLLoader home;
     public static FXMLLoader cardCreation;
     public static FXMLLoader card;
+    public static FXMLLoader quiz;
 
     public static Scene scene;
 
@@ -37,6 +46,7 @@ public class Main extends Application {
         primaryStage = stage;
         primaryStage.setTitle("ProjectQ");
         primaryStage.setScene(scene);
+        primaryStage.setOnCloseRequest(event -> exitBTNAction(event));
         primaryStage.show();
     }
 
@@ -62,17 +72,20 @@ public class Main extends Application {
         card = new FXMLLoader(getClass().getResource("card-view.fxml"));
         card.load();
 
+        quiz = new FXMLLoader(getClass().getResource("quiz-view.fxml"));
+        quiz.load();
+
         HomeController homeController = home.getController();
         CardCreationController cardCreationController = cardCreation.getController();
         CardViewController cardViewController = card.getController();
+        QuizController quizController = quiz.getController();
 
         homeController.initModel(dataModel);
         cardCreationController.initModel(dataModel);
         cardViewController.initModel(dataModel);
+        quizController.initModel(dataModel);
 
         createSampleCards();
-
-//        JSONUtillities.createDefaultCards();
     }
 
     public void createSampleCards() throws IOException {
@@ -86,9 +99,6 @@ public class Main extends Application {
             dataModel.addFolder(cardFolder);
             homeController.addTreeFolder(cardFolder.getFolderName(), cardFolder);
         }
-
-
-
 
         dataModel.setCurrentFolder(dataModel.getFolders().get(0));
         //else
@@ -108,5 +118,33 @@ public class Main extends Application {
 
     public void loadData() {
 
+    }
+
+    /**
+     * Akce pro tlacitko ukonceni programu (X).
+     * Vytvori potvrzovaci dialog - kdyz ano, program se ukonci, kdyz ne ukonceni se prerusi a program pokracuje v behu.
+     *
+     * @param event ukonceni programu
+     */
+    private void exitBTNAction(WindowEvent event) {
+        String exitStr = "Are you sure you want to exit the program?";
+
+        Alert exitAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        exitAlert.setTitle("Exit");
+        exitAlert.setHeaderText("Exit");
+        exitAlert.setContentText(exitStr);
+
+        DialogPane alertDP = exitAlert.getDialogPane();
+        alertDP.getStylesheets().add(Config.ACTIVE_STYLE_SHEET.get());
+        alertDP.getStyleClass().add("alertDP");
+
+        Optional<ButtonType> result = exitAlert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            Platform.exit();
+            System.exit(0);
+        } else {
+            event.consume();	// prerusi ukonceni programu
+            exitAlert.close();
+        }
     }
 }

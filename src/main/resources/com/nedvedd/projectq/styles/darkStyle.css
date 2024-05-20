@@ -28,6 +28,24 @@
     -fx-text-fill: WHITE;
 }
 
+.startQuizButton {
+    -fx-background-color: #00965a;
+    -fx-background-radius: 10px;
+    -fx-text-fill: WHITE;
+}
+
+.startQuizButton:hover {
+    -fx-background-color: #00b731;
+}
+
+.header {
+    -fx-background-color: #0c162b;;
+}
+
+.timeLabel {
+    -fx-text-fill: WHITE;
+}
+
 .cancelButton {
     -fx-background-color: #d03636;
     -fx-background-radius: 10px;
@@ -85,11 +103,11 @@
     -fx-background-color: #0c162b;
 }
 
-.deleteButton {
+.editDeleteButton {
     -fx-background-color: #27498c;
 }
 
-.deleteButton:hover {
+.editDeleteButton:hover {
     -fx-background-color: #2e80c0;
 }
 

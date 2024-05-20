@@ -4,8 +4,8 @@ import com.nedvedd.projectq.JSONUtillities;
 import com.nedvedd.projectq.Main;
 import com.nedvedd.projectq.data.Card;
 import com.nedvedd.projectq.data.CardFolder;
-import com.nedvedd.projectq.data.DataModel;
 import com.nedvedd.projectq.data.TreeFolder;
+import com.nedvedd.projectq.view.Config;
 import com.nedvedd.projectq.view.MiniCard;
 import com.nedvedd.projectq.view.TreeFolderFactory;
 import javafx.collections.FXCollections;
@@ -18,17 +18,14 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-public class HomeController {
+public class HomeController extends AController {
 
-    private DataModel dataModel;
     private TreeItem<TreeFolder> currentTreeFolder;
     private int currentColumnIndex = 0;
     private int currentRowIndex = 1;
 
     private final ObservableList<MiniCard> miniCards = FXCollections.observableArrayList();
 
-    @FXML
-    private Label welcomeText;
 
     @FXML
     private TreeView<TreeFolder> folderTreeView;
@@ -36,16 +33,17 @@ public class HomeController {
     @FXML
     private GridPane gridPane = new GridPane();
 
-    public void initModel(DataModel dataModel) {
-        if (this.dataModel != null) {
-            throw new IllegalStateException("Model already initialized");
-        }
-        this.dataModel = dataModel;
-    }
 
     @FXML
     protected void switchSceneToCardCreation() throws IOException {
         Main.switchSceneTo(Main.cardCreation);
+    }
+
+    @FXML
+    protected void startQuiz() throws IOException {
+        QuizController quizController = Main.quiz.getController();
+        quizController.startQuiz();
+        Main.switchSceneTo(Main.quiz);
     }
 
     public void generateFolderTreeView() {
@@ -143,7 +141,7 @@ public class HomeController {
 
     private MiniCard createMiniCard(Card card) {
         MiniCard miniCard = new MiniCard(card);
-        miniCard.getStylesheets().add(String.valueOf(Main.class.getResource("styles/darkStyle.css")));
+        miniCard.getStylesheets().add(Config.ACTIVE_STYLE_SHEET.get());
         miniCard.getStyleClass().add("miniCardVBox");
 
         return miniCard;

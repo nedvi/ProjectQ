@@ -8,18 +8,18 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="createCardVBox" stylesheets="@styles/darkStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nedvedd.projectq.controller.CardCreationController">
    <children>
-      <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="410.0" style="-fx-background-color: #27498c; -fx-background-radius: 20;" stylesheets="@styles/darkStyle.css">
+      <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="388.0" style="-fx-background-color: #27498c; -fx-background-radius: 20;" stylesheets="@styles/darkStyle.css">
          <children>
             <Label text="Otázka" textFill="WHITE">
                <font>
                   <Font name="Roboto Thin" size="28.0" />
                </font></Label>
-            <TextArea fx:id="cardQuestion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="280.0" styleClass="text-area" stylesheets="@styles/darkStyle.css" wrapText="true" />
+            <TextArea fx:id="cardQuestion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="325.0" styleClass="text-area" stylesheets="@styles/darkStyle.css" wrapText="true" />
             <Label text="Odpověď" textFill="WHITE">
                <font>
                   <Font name="Roboto Thin" size="28.0" />
                </font></Label>
-            <TextArea fx:id="cardAnswer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="280.0" styleClass="text-area" stylesheets="@styles/darkStyle.css" wrapText="true">
+            <TextArea fx:id="cardAnswer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="325.0" styleClass="text-area" stylesheets="@styles/darkStyle.css" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor></TextArea>
@@ -27,7 +27,7 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="65.0" prefWidth="960.0" spacing="5.0">
          <children>
-          <Button onAction="#cancel" mnemonicParsing="false" prefHeight="50.0" prefWidth="134.0" styleClass="cancelButton" stylesheets="@styles/darkStyle.css" text="Zrušit" />
+          <Button mnemonicParsing="false" onAction="#cancel" prefHeight="50.0" prefWidth="134.0" styleClass="cancelButton" stylesheets="@styles/darkStyle.css" text="Zrušit" />
             <Button alignment="CENTER" onAction="#saveCard" prefHeight="50.0" prefWidth="134.0" styleClass="saveCardButton" stylesheets="@styles/darkStyle.css" text="Uložit kartu" textFill="WHITE">
                <font>
                   <Font name="Roboto Light" size="20.0" />

@@ -2,21 +2,18 @@ package com.nedvedd.projectq.controller;
 
 import com.nedvedd.projectq.Main;
 import com.nedvedd.projectq.data.Card;
-import com.nedvedd.projectq.data.DataModel;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 import java.io.IOException;
 
-public class CardViewController {
+public class CardViewController extends AController {
 
-    private DataModel dataModel;
     private Card card;
 
     private boolean rotated = false;
@@ -25,8 +22,6 @@ public class CardViewController {
 
     @FXML
     private VBox cardVB;
-    @FXML
-    private TextField nameTF;
 
     @FXML
     private Label headingLabel;
@@ -39,18 +34,10 @@ public class CardViewController {
     @FXML
     private Button nextButton;
 
-    public CardViewController() {
-    }
-
-    public void initModel(DataModel dataModel) {
-        if (this.dataModel != null) {
-            throw new IllegalStateException("Model already initialized");
-        }
-        this.dataModel = dataModel ;
-    }
 
     public void setCard(Card card) {
         this.card = card;
+        dataModel.getCurrentFolder().setCurrentCard(card);
         questionAnswerLabel.setText(card.getQuestion());
 
         int indexOfCurrentCard = dataModel.getCurrentFolder().getCards().indexOf(card);
@@ -71,6 +58,14 @@ public class CardViewController {
         Main.switchSceneTo(Main.home);
         if (rotated)
             rotateOnCardClick();
+    }
+
+    @FXML
+    private void editCurrentCard() throws IOException {
+        CardCreationController cardCreationController = Main.cardCreation.getController();
+        cardCreationController.setEditing(true);
+        cardCreationController.loadCurrentCard();
+        Main.switchSceneTo(Main.cardCreation);
     }
 
     @FXML
