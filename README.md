@@ -26,7 +26,8 @@
 ## Screenshots
 #### Domovská stránka
 ![home0](screenshots/home01.PNG?raw=true "home01")
-![home-demo](screenshots/home-demo.mp4?raw=true "home-demo")
+https://github.com/nedvi/ProjectQ/assets/113076221/c90415b1-c606-4e99-91b0-1068c8ed578b
+
 ### Kvízový režim
 ![quiz01](screenshots/quiz01.PNG?raw=true "quiz01")
-![quiz-demo](screenshots/quiz-demo.mp4?raw=true "quiz-demo")
+https://github.com/nedvi/ProjectQ/assets/113076221/9634a922-f227-44fb-acaf-b37abac7553b
