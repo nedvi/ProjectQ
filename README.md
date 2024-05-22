@@ -12,7 +12,7 @@
 
 ### Editace kartiček
 
-* Možnost úprav existujících kartiček kdykoliv
+* Možnost úprav existujících kartiček
 * Uživatelsky přívětivé rozhraní pro rychlé změny
 ### Mazání kartiček
 * Jednoduché odstranění nepotřebných kartiček
@@ -26,7 +26,15 @@
 ## Screenshots
 #### Domovská stránka
 ![home0](screenshots/home01.PNG?raw=true "home01")
-![home-demo](screenshots/home-demo.mp4?raw=true "home-demo")
+
+
+https://github.com/nedvi/ProjectQ/assets/113076221/541415ae-e15b-4a33-91ed-b091cde96510
+
+
+
 ### Kvízový režim
 ![quiz01](screenshots/quiz01.PNG?raw=true "quiz01")
-![quiz-demo](screenshots/quiz-demo.mp4?raw=true "quiz-demo")
+
+
+https://github.com/nedvi/ProjectQ/assets/113076221/7b340660-0aed-4737-9c35-5bd8a61eb97a
+
