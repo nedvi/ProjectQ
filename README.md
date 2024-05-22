@@ -26,8 +26,15 @@
 ## Screenshots
 #### Domovská stránka
 ![home0](screenshots/home01.PNG?raw=true "home01")
-![home-demo](https://github.com/nedvi/ProjectQ/assets/113076221/c90415b1-c606-4e99-91b0-1068c8ed578b)
+
+
+https://github.com/nedvi/ProjectQ/assets/113076221/541415ae-e15b-4a33-91ed-b091cde96510
+
+
 
 ### Kvízový režim
 ![quiz01](screenshots/quiz01.PNG?raw=true "quiz01")
-![quiz-demo](https://github.com/nedvi/ProjectQ/assets/113076221/9634a922-f227-44fb-acaf-b37abac7553b)
+
+
+https://github.com/nedvi/ProjectQ/assets/113076221/7b340660-0aed-4737-9c35-5bd8a61eb97a
+
