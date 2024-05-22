@@ -23,6 +23,11 @@
 * Okamžitá zpětná vazba na správnost odpovědí.
 * Finální statistika s časem a počtem chybných odpovědí
 
+## Spuštění
+* Ke spuštění stačí adresář app
+* Program spouštět přes Run.bat
+* Soubor userData.json slouží k ukládání/načítání dat
+
 ## Screenshots
 #### Domovská stránka
 ![home0](screenshots/home01.PNG?raw=true "home01")
