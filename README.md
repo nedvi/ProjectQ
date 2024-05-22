@@ -12,7 +12,7 @@
 
 ### Editace kartiček
 
-* Možnost úprav existujících kartiček kdykoliv
+* Možnost úprav existujících kartiček
 * Uživatelsky přívětivé rozhraní pro rychlé změny
 ### Mazání kartiček
 * Jednoduché odstranění nepotřebných kartiček
