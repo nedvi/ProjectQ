@@ -1,6 +1,6 @@
 package com.nedvedd.projectq.controller;
 
-import com.nedvedd.projectq.utillities.JsonUtillities;
+import com.nedvedd.projectq.utillities.JsonUtilities;
 import com.nedvedd.projectq.Main;
 import com.nedvedd.projectq.model.Card;
 import com.nedvedd.projectq.model.CardFolder;
@@ -227,6 +227,6 @@ public class HomeController extends AController {
      */
     @FXML
     private void saveData() throws IOException {
-        JsonUtillities.saveJsonData(dataModel.getFolders());
+        JsonUtilities.saveJsonData(dataModel.getFolders());
     }
 }

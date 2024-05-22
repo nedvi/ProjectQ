@@ -22,7 +22,7 @@ public class Card {
     /**
      * Konstruktor pro vytvoreni nove instance karty.
      * Anotace @JsonCreator a @JsonPrperty slouzi pro praci s knihovnou Jackson,
-     * ktera s pomoci custom tridy JsonUtillities nacita a uklada data uzivatele do .json souboru
+     * ktera s pomoci custom tridy JsonUtilities nacita a uklada data uzivatele do .json souboru
      *
      * @param question zneni otazky
      * @param answer zneni odpovedi

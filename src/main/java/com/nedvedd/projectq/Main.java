@@ -7,7 +7,7 @@ import com.nedvedd.projectq.controller.QuizController;
 import com.nedvedd.projectq.model.Card;
 import com.nedvedd.projectq.model.CardFolder;
 import com.nedvedd.projectq.model.DataModel;
-import com.nedvedd.projectq.utillities.JsonUtillities;
+import com.nedvedd.projectq.utillities.JsonUtilities;
 import com.nedvedd.projectq.view.Config;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 /**
- * Hlavni (spousteci) trida programu ProjectQ-> Ucici aplikace s moznosti vytvareni a prochazeni karticek a kvizovym modem
+ * Hlavni trida programu ProjectQ-> Ucici aplikace s moznosti vytvareni a prochazeni karticek a kvizovym modem
  *
  * @author Dominik Nedved
  * @version 21.05.2024
@@ -140,7 +140,7 @@ public class Main extends Application {
         HomeController homeController = home.getController();
         homeController.generateFolderTreeView();
 
-        ObservableList<CardFolder> cardFolders = JsonUtillities.loadJsonData();
+        ObservableList<CardFolder> cardFolders = JsonUtilities.loadJsonData();
         dataModel.getFolders().clear();
 
         if (cardFolders != null) {
@@ -149,14 +149,19 @@ public class Main extends Application {
                 homeController.addTreeFolder(cardFolder.getFolderName(), cardFolder);
             }
         } else {
-            dataModel.addFolder(new CardFolder("Složka 1"));
+            CardFolder cardFolder1 = new CardFolder("Složka 1");
+            dataModel.addFolder(cardFolder1);
             for (int i = 0; i < 5; i++) {
                 dataModel.getFolders().get(0).addCard(new Card("Otázka " + i, "Odpověď " + i));
             }
-            dataModel.addFolder(new CardFolder("Složka 2"));
+            homeController.addTreeFolder(cardFolder1.getFolderName(), cardFolder1);
+
+            CardFolder cardFolder2 = new CardFolder("Složka 2");
+            dataModel.addFolder(cardFolder2);
             for (int i = 0; i < 3; i++) {
                 dataModel.getFolders().get(1).addCard(new Card("Otázka " + i, "Odpověď " + i));
             }
+            homeController.addTreeFolder(cardFolder2.getFolderName(), cardFolder2);
         }
 
         dataModel.setCurrentFolder(dataModel.getFolders().get(0));
