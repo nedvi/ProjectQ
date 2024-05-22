@@ -161,3 +161,38 @@
     -fx-background-insets : 2.0, 0.0, 0.0;
     -fx-background-radius : 2.0em;
 }
+
+.alertDP {
+    -fx-background-color: #0c162b;
+    -fx-text-fill: WHITE;
+}
+
+.alertDP .button {
+    -fx-background-color: #27498c;
+    -fx-text-fill: WHITE;
+    -fx-font-size: 13px;
+}
+
+.alertDP .button:hover {
+    -fx-background-color: #2e80c0;
+}
+
+.alertDP > *.label.content{
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-text-fill: WHITE;
+    -fx-font-family: 'Helvetica';
+}
+
+.alertDP > .header-panel {
+    -fx-background-color: #0c162b;
+    -fx-text-fill: WHITE;
+    -fx-font-family: 'Helvetica';
+}
+
+.alertDP > .header-panel > .label{
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: WHITE;
+    -fx-font-family: 'Helvetica';
+}

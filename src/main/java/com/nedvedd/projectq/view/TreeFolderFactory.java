@@ -1,15 +1,24 @@
 package com.nedvedd.projectq.view;
 
-import com.nedvedd.projectq.data.TreeFolder;
+import com.nedvedd.projectq.model.TreeFolder;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeCell;
 import javafx.scene.input.KeyCode;
 
+/**
+ * Custom factory pro operace s bunkami ve strome se slozkami (TreeView)
+ *
+ * @author Dominik Nedved
+ * @version 21.05.2024
+ */
 public class TreeFolderFactory extends TreeCell<TreeFolder> {
 
-    /** TextField jako editor */
+    /** TextField jako editor nazvu slozky */
     private TextField folderNameInputTF;
 
+    /**
+     * Akce zahajeni editace pri double-clicku na bunku
+     */
     @Override
     public void startEdit() {
         super.startEdit();
@@ -19,27 +28,28 @@ public class TreeFolderFactory extends TreeCell<TreeFolder> {
             createEditor();
         }
 
-        // "vypnuti" rendereru
         setText(null);
-        // nastaveni editoru - vytvareni obsahu
-        folderNameInputTF.setText(createEditorContent());
-        // zobrazeni editoru v bunce
+        folderNameInputTF.setText(getFolderName());
         setGraphic(folderNameInputTF);
     }
 
     /**
-     * Metoda pro prepnuti bunky do zobrazovaciho modu.
+     * Metoda pro prepnuti bunky do zobrazovaciho modu (zruseni editace nazvu slozky).
      */
     @Override
     public void cancelEdit() {
         super.cancelEdit();
 
-        // nastaveni obsahu rendereru (label)
-        setText(createContent());
-        // odstraneni editoru z bunky
+        setText(getFinalFolderName());
         setGraphic(null);
     }
 
+    /**
+     * Aktualizuje vzhled bunky
+     *
+     * @param item novy item pro bunku
+     * @param empty true pokud je bunka prazdna (reprezentuje pouze prazdnou radku), false pokud prazdna neni
+     */
     @Override
     protected void updateItem(TreeFolder item, boolean empty) {
         super.updateItem(item, empty);
@@ -48,46 +58,31 @@ public class TreeFolderFactory extends TreeCell<TreeFolder> {
             setText(null);
             setGraphic(null);
         } else {
-            // pokud je bunka v modu editace:
             if (isEditing()) {
                 if (folderNameInputTF != null) {
-                    // nastaveni obsahu editoru
-                    folderNameInputTF.setText(createEditorContent());
-                    // "vypnuti" rendereru
+                    folderNameInputTF.setText(getFolderName());
                     setText(null);
-                    // pridani editoru do grafu sceny
                     setGraphic(folderNameInputTF);
                 }
-                // pokud je bunka v modu zobrazeni:
             } else {
-                // nastaveni obsahu rendereru
-                setText(createContent());
-                // "vypnuti" editoru
+                setText(getFinalFolderName());
                 setGraphic(null);
             }
         }
     }
 
     /**
-     * Metoda pro vytvoreni obsahu rendereru
-     *
-     * @return symbol a jmeno itemu
+     * @return symbol a jmeno slozky
      */
-    private String createContent() {
-        /*
-         * Vyber symbolu slozky podle toho, zda TreeItem typu FOLDER je zrovna otevreny nebo naopak uzavreny
-         * closed folder: "\uD83D\uDDC0", open folder: "\uD83D\uDCC2"
-         */
-        String folderSymbol = (getTreeItem().isExpanded() ? "\uD83D\uDCC2" : "\uD83D\uDDC0");
+    private String getFinalFolderName() {
+        String folderSymbol = "\uD83D\uDDC0";
         return folderSymbol + " " + getItem().getFolderName();
     }
 
     /**
-     * Metoda pro vytvoreni obsahu editoru.
-     *
      * @return jmeno bez symbolu (ikonu uzivatel logicky "natvrdo" menit nemuze)
      */
-    private String createEditorContent() {
+    private String getFolderName() {
         return getItem().getFolderName();
     }
 
@@ -95,13 +90,11 @@ public class TreeFolderFactory extends TreeCell<TreeFolder> {
      * Metoda pro vytvoreni editoru.
      */
     private void createEditor() {
-        // editor je zalozen na TextFieldu
-        folderNameInputTF = new TextField();
         double tfSize = 150;
+        folderNameInputTF = new TextField();
         folderNameInputTF.setMinWidth(tfSize);
         folderNameInputTF.setPrefWidth(tfSize);
         folderNameInputTF.setMaxWidth(tfSize);
-
 
         // nastaveni reakci na klavesy
         folderNameInputTF.setOnKeyReleased(event -> {
@@ -112,11 +105,7 @@ public class TreeFolderFactory extends TreeCell<TreeFolder> {
                     // pokud neni zadny vstup, editace se zrusi
                     cancelEdit();
                 } else {
-                    // getting acces to the element from the model, representing
-                    // edited value
-                    // ziskani pristupu k elementu z modelu, reprezentujici upravenou hodnotu
                     TreeFolder item = getItem();
-                    // nastaveni noveho nazvu do datoveho modelu
                     item.setFolderName(folderNameInputTF.getText());
                     commitEdit(item);
                 }

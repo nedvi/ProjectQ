@@ -1,44 +1,62 @@
 package com.nedvedd.projectq.controller;
 
-import com.nedvedd.projectq.JSONUtillities;
+import com.nedvedd.projectq.utillities.JsonUtillities;
 import com.nedvedd.projectq.Main;
-import com.nedvedd.projectq.data.Card;
-import com.nedvedd.projectq.data.CardFolder;
-import com.nedvedd.projectq.data.TreeFolder;
+import com.nedvedd.projectq.model.Card;
+import com.nedvedd.projectq.model.CardFolder;
+import com.nedvedd.projectq.model.TreeFolder;
 import com.nedvedd.projectq.view.Config;
 import com.nedvedd.projectq.view.MiniCard;
 import com.nedvedd.projectq.view.TreeFolderFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.List;
 
+/**
+ * Controller pro zobrazeni domovske stranky s kartami
+ *
+ * @author Dominik Nedved
+ * @version 21.05.2024
+ */
 public class HomeController extends AController {
 
+    /** Atribut aktualni slozky ve strome slozek */
     private TreeItem<TreeFolder> currentTreeFolder;
-    private int currentColumnIndex = 0;
-    private int currentRowIndex = 1;
 
+    /** Seznam minikaret zobrazovanych na domovske strence */
     private final ObservableList<MiniCard> miniCards = FXCollections.observableArrayList();
 
-
+    /** Reference na strom slozek v GUI */
     @FXML
     private TreeView<TreeFolder> folderTreeView;
 
+    /** Reference na GridPane s minikartami v GUI */
     @FXML
     private GridPane gridPane = new GridPane();
 
-
+    /**
+     * Akce pro tlacitko prepnuti na tvorbu nove karty
+     *
+     * @throws IOException vyjimka pri nenactenem CardCreatorLoaderu
+     */
     @FXML
     protected void switchSceneToCardCreation() throws IOException {
-        Main.switchSceneTo(Main.cardCreation);
+        Main.switchSceneTo(Main.cardCreator);
     }
 
+    /**
+     * Akce pro tlactitko zahajeni kvizu
+     *
+     * @throws IOException vyjimka pri nenactenem QuizLoaderu
+     */
     @FXML
     protected void startQuiz() throws IOException {
         QuizController quizController = Main.quiz.getController();
@@ -46,18 +64,14 @@ public class HomeController extends AController {
         Main.switchSceneTo(Main.quiz);
     }
 
+    /**
+     * Vygeneruje strom slozek v TreeView v GUI
+     */
     public void generateFolderTreeView() {
-        folderTreeView.setCellFactory(treeView -> new TreeFolderFactory());
-
-        ContextMenu contextMenu = new ContextMenu();
-
-        // create menuitems
         MenuItem removeCurrentFolderItem = new MenuItem("Remove current folder");
 
-
-        // add menu items to menu
+        ContextMenu contextMenu = new ContextMenu();
         contextMenu.getItems().add(removeCurrentFolderItem);
-
         folderTreeView.setContextMenu(contextMenu);
 
         folderTreeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -78,14 +92,19 @@ public class HomeController extends AController {
             }
         });
 
-        folderTreeView.setEditable(true);
-
-        TreeItem<TreeFolder> invisibleRoot = new TreeItem<TreeFolder>(new TreeFolder("Invisible Root", null));
+        TreeItem<TreeFolder> invisibleRoot = new TreeItem<>(new TreeFolder("Invisible Root", null));
         folderTreeView.setRoot(invisibleRoot);
         folderTreeView.setShowRoot(false);
         folderTreeView.getRoot().setExpanded(true);
+        folderTreeView.setEditable(true);
+        folderTreeView.setCellFactory(treeView -> new TreeFolderFactory());
     }
 
+    /**
+     * Prida novou slozku do stromu
+     *
+     * @param folderName jmeno slozky
+     */
     public void addTreeFolder(String folderName) {
         CardFolder newCardFolder = new CardFolder(folderName);
         dataModel.addFolder(newCardFolder);
@@ -106,11 +125,20 @@ public class HomeController extends AController {
         folderTreeView.getRoot().getChildren().add(newFolderTI);
     }
 
+    /**
+     * Akce pro tlacitko pridani nove slozky.
+     * Prida slozku novou slozku s explicitne nastavenym nazvem "Nova slozka" (da se nasledne editovat diky custom tride TreeFolderFactory)
+     */
     @FXML
     private void addTreeFolder() {
         addTreeFolder("Nová složka");
     }
 
+    /**
+     * Vymaze ze stromu slozku z parametru
+     *
+     * @param treeFolder slozka k vymazani
+     */
     private void removeTreeFolder(TreeItem<TreeFolder> treeFolder) {
         System.out.println("LOG: " + treeFolder.getValue().getFolderName() + " removed");
         dataModel.removeFolder(treeFolder.getValue().getCardFolder());
@@ -118,12 +146,9 @@ public class HomeController extends AController {
         repaintGridPane();
     }
 
-    public void addCurrentCardToGridPane() {
-        MiniCard newMiniCard = createMiniCard(dataModel.getCurrentFolder().getCurrentCard());
-        miniCards.add(newMiniCard);
-        repaintGridPane();
-    }
-
+    /**
+     * Znovu vykresli GridPane s kartami
+     */
     public void repaintGridPane() {
         gridPane.getChildren().clear();
         int col = 0;
@@ -139,6 +164,12 @@ public class HomeController extends AController {
         }
     }
 
+    /**
+     * Vytvori novou minikartu
+     *
+     * @param card instance karty
+     * @return nova instance minikarty
+     */
     private MiniCard createMiniCard(Card card) {
         MiniCard miniCard = new MiniCard(card);
         miniCard.getStylesheets().add(Config.ACTIVE_STYLE_SHEET.get());
@@ -147,6 +178,12 @@ public class HomeController extends AController {
         return miniCard;
     }
 
+
+    /**
+     * Aktualizuje seznam s minikartami v konkretni slozce
+     *
+     * @param cardFolder instance slozky s kartami
+     */
     public void updateMiniCards(CardFolder cardFolder) {
         miniCards.clear();
         for (int i = 0; i < cardFolder.getCards().size(); i++) {
@@ -155,6 +192,20 @@ public class HomeController extends AController {
         }
     }
 
+    /**
+     * Metoda pro dokonceni vytvoreni nove karty -> posledni vytvorenou kartu prida na GridPane
+     */
+    public void addCurrentCardToGridPane() {
+        MiniCard newMiniCard = createMiniCard(dataModel.getCurrentFolder().getCurrentCard());
+        miniCards.add(newMiniCard);
+        repaintGridPane();
+    }
+
+    /**
+     * Odstrani minikartu
+     *
+     * @param card instance karty
+     */
     public void removeMiniCard(Card card) {
         Iterator<MiniCard> miniCardIterator = miniCards.iterator();
         while (miniCardIterator.hasNext()) {
@@ -168,12 +219,14 @@ public class HomeController extends AController {
         repaintGridPane();
     }
 
-    public List<MiniCard> getMiniCards() {
-        return miniCards;
-    }
-
+    /**
+     * Akce pro tlacitko ulozeni dat.
+     * Vyvola ulozeni slozek i karet do JSON souboru
+     *
+     * @throws IOException vyjimka pri chybe zapisu do souboru
+     */
     @FXML
     private void saveData() throws IOException {
-        JSONUtillities.saveJsonData(dataModel.getFolders());
+        JsonUtillities.saveJsonData(dataModel.getFolders());
     }
 }

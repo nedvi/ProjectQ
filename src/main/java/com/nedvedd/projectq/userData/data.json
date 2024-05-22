@@ -71,32 +71,38 @@
 }, {
   "cards" : [ {
     "question" : "Co je to JDK?",
-    "answer" : "JDK (Java Development Kit) je soubor nástrojů pro vývoj aplikací v Javě, který obsahuje JRE (Java Runtime Environment), kompilátor javac a další nástroje."
+    "answer" : "Soubor nástrojů pro vývoj aplikací v Javě, který obsahuje JRE (Java Runtime Environment), kompilátor javac a další nástroje."
   }, {
     "question" : "Co je to JVM?",
-    "answer" : "JVM (Java Virtual Machine) je virtuální stroj, který umožňuje spouštění Java programů tím, že překládá bajtový kód do strojového kódu."
+    "answer" : "Virtuální stroj, který umožňuje spouštění Java programů tím, že překládá bajtový kód do strojového kódu."
   }, {
     "question" : "Co je to polymorfismus?",
-    "answer" : "Polymorfismus je vlastnost objektově orientovaného programování, která umožňuje volání metod na objektech různých tříd, které jsou odvozeny od společné nadtřídy, a přitom vykonávat různé funkce."
+    "answer" : "Vlastnost objektově orientovaného programování, která umožňuje definovat jedno rozhraní, ale implementovat ho více způsoby."
   }, {
-    "question" : "Jaký je rozdíl mezi == a equals() v Javě?",
-    "answer" : "Operátor == porovnává, zda dvě reference ukazují na stejný objekt, zatímco metoda equals() porovnává obsah objektů, pokud je správně přepsaná."
+    "question" : "Co v javě dělá metoda equals()?",
+    "answer" : "Porovnává obsah objektů."
   }, {
     "question" : "Co je to garbage collection v Javě?",
-    "answer" : "Garbage collection je automatický proces správy paměti v Javě, který uvolňuje paměť zabranou objekty, které již nejsou referencovány."
+    "answer" : "Proces správy paměti v Javě, který uvolňuje paměť zabranou objekty, které již nejsou referencovány."
   }, {
     "question" : "Co je to výjimka (exception) v Javě a jak se s ní pracuje?",
-    "answer" : "Výjimka je událost, která nastane během vykonávání programu a naruší jeho normální tok. Výjimky se v Javě zachytávají a zpracovávají pomocí bloků try, catch a finally."
+    "answer" : "Událost, která nastane během vykonávání programu a naruší jeho normální tok. V Javě se zachytávají a zpracovávají pomocí bloků try, catch a finally."
   }, {
     "question" : "Jak vytvořit objekt v Javě?",
-    "answer" : "Objekt v Javě se vytvoří pomocí klíčového slova new, například: \nMyClass obj = new MyClass();."
+    "answer" : "Pomocí klíčového slova new, například: \nMyClass obj = new MyClass();."
   }, {
-    "question" : "Co je to třída (class) a instance (instance) v Javě?",
-    "answer" : "Třída je šablona pro vytvoření objektů, které obsahují metody a atributy.\nInstance je konkrétní objekt vytvořený podle této šablony (třídy)."
+    "question" : "Co je to třída?",
+    "answer" : "Třída je šablona pro vytvoření objektů, které obsahují metody a atributy."
+  }, {
+    "question" : "Co v javě dělá operátor '=='?",
+    "answer" : "Porovnává, zda dvě reference ukazují na stejný objekt."
+  }, {
+    "question" : "Co je to instance?",
+    "answer" : "Konkrétní objekt vytvořený podle šablony (třídy)."
   } ],
-  "folderName" : "APR",
+  "folderName" : "Java",
   "currentCard" : {
-    "question" : "Co je to třída (class) a instance (instance) v Javě?",
-    "answer" : "Třída je šablona pro vytvoření objektů, které obsahují metody a atributy.\nInstance je konkrétní objekt vytvořený podle této šablony (třídy)."
+    "question" : "Co je to polymorfismus?",
+    "answer" : "Vlastnost objektově orientovaného programování, která umožňuje definovat jedno rozhraní, ale implementovat ho více způsoby."
   }
 } ]

@@ -2,7 +2,7 @@ package com.nedvedd.projectq.view;
 
 import com.nedvedd.projectq.controller.CardViewController;
 import com.nedvedd.projectq.Main;
-import com.nedvedd.projectq.data.Card;
+import com.nedvedd.projectq.model.Card;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -13,16 +13,33 @@ import javafx.scene.shape.Line;
 
 import java.io.IOException;
 
+/**
+ * Trida pro vytvareni minikaret umistovanych na GridPane na domovske strance
+ *
+ * @author Dominik Nedved
+ * @version 21.05.2024
+ */
 public class MiniCard extends BorderPane {
 
+    /** Karta (datova struktura) */
     private final Card card;
 
+    /**
+     * Konstruktor pro vytvoreni nove instance minikarty
+     *
+     * @param card karta (datova struktura)
+     */
     public MiniCard(Card card) {
         this.card = card;
-        this.setCenter(getMiniCard());
+        this.setCenter(createMiniCard());
     }
 
-    private Node getMiniCard() {
+    /**
+     * Vytvori novou minikartu
+     *
+     * @return nova minikarta
+     */
+    private Node createMiniCard() {
         VBox miniCardVBox = new VBox();
 
         Label questionLabel = new Label(card.getQuestion());
@@ -33,12 +50,14 @@ public class MiniCard extends BorderPane {
                         "-fx-text-fill: WHITE; -fx-text-alignment: center");
         questionLabel.setAlignment(Pos.CENTER);
         questionLabel.setMaxWidth(Double.MAX_VALUE);
+        questionLabel.setMaxHeight(100);
 
         answerLabel.setStyle(
                 "-fx-wrap-text: true;" +
                         "-fx-text-fill: WHITE; -fx-text-alignment: center");
         answerLabel.setAlignment(Pos.CENTER);
         answerLabel.setMaxWidth(Double.MAX_VALUE);
+        answerLabel.setMaxHeight(100);
 
         Line line = new Line(-75, 0, 75, 0);
 
@@ -63,6 +82,9 @@ public class MiniCard extends BorderPane {
         return miniCardVBox;
     }
 
+    /**
+     * @return karta (datova struktura)
+     */
     public Card getCard() {
         return card;
     }

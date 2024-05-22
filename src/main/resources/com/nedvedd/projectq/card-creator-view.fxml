@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="createCardVBox" stylesheets="@styles/darkStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nedvedd.projectq.controller.CardCreationController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="createCardVBox" stylesheets="@styles/darkStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nedvedd.projectq.controller.CardCreatorController">
    <children>
       <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="388.0" style="-fx-background-color: #27498c; -fx-background-radius: 20;" stylesheets="@styles/darkStyle.css">
          <children>

@@ -1,7 +1,7 @@
 package com.nedvedd.projectq.view;
 
 import com.nedvedd.projectq.Main;
-import com.nedvedd.projectq.data.Card;
+import com.nedvedd.projectq.model.Card;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -9,19 +9,40 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Trida pro vytvareni kvizovych umistovanych na GridPane u kvizoveho rezimu
+ *
+ * @author Dominik Nedved
+ * @version 21.05.2024
+ */
 public class QuizCard extends BorderPane {
+
+    /** Karta (datova struktura) */
     private final Card card;
+
+    /** Typ kvizove karty (otazka/odpoved) */
     private QuizCardType quizCardType;
 
+    /**
+     * Konstruktor pro vytvoreni nove instance kvizove karty
+     *
+     * @param card karta (datova struktura)
+     * @param quizCardType typ kvizove karty (otazka/odpoved)
+     */
     public QuizCard(Card card, QuizCardType quizCardType) {
         this.card = card;
         this.quizCardType = quizCardType;
-        this.setCenter(getQuizCard());
+        this.setCenter(createQuizCard());
         this.getStylesheets().add(String.valueOf(Main.class.getResource("styles/darkStyle.css")));
         this.getStyleClass().add("miniCardVBox");
     }
 
-    private Node getQuizCard() {
+    /**
+     * Vytvori novou kvizovou kartu
+     *
+     * @return nova kvizova karta
+     */
+    private Node createQuizCard() {
         VBox miniCardVBox = new VBox();
 
         Label label = new Label();
@@ -48,10 +69,16 @@ public class QuizCard extends BorderPane {
         return miniCardVBox;
     }
 
+    /**
+     * @return karta (datova struktura)
+     */
     public Card getCard() {
         return card;
     }
 
+    /**
+     * @return typ kvizove karty (otazka/odpoved)
+     */
     public QuizCardType getQuizCardType() {
         return quizCardType;
     }
